@@ -1,5 +1,5 @@
 /*
-* Archivo: AreaRepository
+* Archivo: PersonaRs
 * Fecha: 30/01/2021
 * Todos los derechos de propiedad intelectual e industrial sobre esta
 * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
@@ -11,15 +11,21 @@
 * propiedad intelectual. Su uso no autorizado dara lugar a las sanciones
 * previstas en la Ley.
  */
-package co.com.grupoasd.activofijo.repository;
+package co.com.grupoasd.activofijo.model;
 
-import co.com.grupoasd.activofijo.entity.Area;
-import org.springframework.data.jpa.repository.JpaRepository;
+import co.com.grupoasd.activofijo.message.Mensaje;
+import co.com.grupoasd.activofijo.entity.Persona;
+import java.util.List;
+import lombok.Data;
 
 /**
- * Clase administradora de los datos.
+ * Clase para guardar resultset de persona.
  * @author adrian G
  */
-public interface AreaRepository extends JpaRepository<Area, Integer> {
-    
+@Data
+public class PersonaRs extends Mensaje {
+    /**
+     * 
+     */
+    private List<Persona> personas;
 }

@@ -1,5 +1,5 @@
 /*
-* Archivo: AreaRepository
+* Archivo: PersonaService
 * Fecha: 30/01/2021
 * Todos los derechos de propiedad intelectual e industrial sobre esta
 * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
@@ -11,15 +11,21 @@
 * propiedad intelectual. Su uso no autorizado dara lugar a las sanciones
 * previstas en la Ley.
  */
-package co.com.grupoasd.activofijo.repository;
+package co.com.grupoasd.activofijo.service;
 
-import co.com.grupoasd.activofijo.entity.Area;
-import org.springframework.data.jpa.repository.JpaRepository;
+import co.com.grupoasd.activofijo.model.PersonaRs;
 
 /**
- * Clase administradora de los datos.
+ * Interface de persona.
+ *
  * @author adrian G
  */
-public interface AreaRepository extends JpaRepository<Area, Integer> {
-    
+public interface PersonaService {
+
+    /**
+     * interface para cargar lista listas de personas.
+     *
+     * @return lista de las personas que estan registradas
+     */
+    PersonaRs getPersona();
 }

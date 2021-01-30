@@ -24,7 +24,6 @@ import co.com.grupoasd.activofijo.util.TipoRespuesta;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -53,15 +52,14 @@ public class AreaApiController {
     @ApiOperation(value = "Devuelve todas las áreas de la empresa")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Se consultó exitosamente", response = Area.class),
-        @ApiResponse(code = 400, message = "Error en la peticion", response = Area.class),
+        @ApiResponse(code = 400, message = "Error en la petición", response = Area.class),
         @ApiResponse(code = 401, message = "Unauthorized"),
         @ApiResponse(code = 404, message = "Not Found"),
         @ApiResponse(code = 500, message = "Internal Server Error", response = Area.class)})
-    @RequestMapping(value = "/obtener-area",
+    @RequestMapping(value = "/obtener-areas",
             produces = {"application/json"},
             method = RequestMethod.GET)
     ResponseEntity<AreaRs> getArea() {
-        Mensaje msm = new Mensaje();
         try{
             AreaRs listAreas = areaService.getArea();
             if(listAreas.getAreas() != null){

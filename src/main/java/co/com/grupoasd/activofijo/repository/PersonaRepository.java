@@ -1,5 +1,5 @@
 /*
-* Archivo: AreaRepository
+* Archivo: PersonaRepository
 * Fecha: 30/01/2021
 * Todos los derechos de propiedad intelectual e industrial sobre esta
 * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
@@ -13,13 +13,13 @@
  */
 package co.com.grupoasd.activofijo.repository;
 
-import co.com.grupoasd.activofijo.entity.Area;
+import co.com.grupoasd.activofijo.entity.Persona;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * Clase administradora de los datos.
  * @author adrian G
  */
-public interface AreaRepository extends JpaRepository<Area, Integer> {
+public interface PersonaRepository extends JpaRepository<Persona, Integer> {
     
 }

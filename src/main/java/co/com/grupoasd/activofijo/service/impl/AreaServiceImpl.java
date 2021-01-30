@@ -46,7 +46,7 @@ public class AreaServiceImpl implements AreaService {
     }
 
     /**
-     * Sobrecarga de metodo para obtener lista de areas.
+     * Implementacion del metodo astacto de la interface.
      *
      * @return lista de areas almacenada en la BD
      */
