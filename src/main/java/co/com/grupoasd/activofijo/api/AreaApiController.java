@@ -15,7 +15,6 @@ package co.com.grupoasd.activofijo.api;
 
 import co.com.grupoasd.activofijo.service.AreaService;
 import co.com.grupoasd.activofijo.model.AreaRs;
-import co.com.grupoasd.activofijo.message.Mensaje;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

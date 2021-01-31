@@ -1,0 +1,49 @@
+/*
+* Archivo: ActivoFijoService
+* Fecha: 30/01/2021
+* Todos los derechos de propiedad intelectual e industrial sobre esta
+* aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
+* Su uso, alteracion, reproduccion o modificacion sin el debido
+* consentimiento por escrito de GRUPO ASD S.A.S. quedan totalmente prohibidos.
+* 
+* Este programa se encuentra protegido por las disposiciones de la
+* Ley 23 de 1982 y demas normas concordantes sobre derechos de autor y
+* propiedad intelectual. Su uso no autorizado dara lugar a las sanciones
+* previstas en la Ley.
+ */
+package co.com.grupoasd.activofijo.service;
+
+import co.com.grupoasd.activofijo.entity.ActivoFijo;
+import co.com.grupoasd.activofijo.model.ActivoFijoRs;
+import co.com.grupoasd.activofijo.model.PutActivoFijoRs;
+import co.com.grupoasd.activofijo.model.PutActivoFijoRq;
+import java.util.Optional;
+
+/**
+ * Interface de ActivoFijo.
+ * @author adrian G
+ */
+public interface ActivoFijoService {
+     /**
+     * interfas de servicio para listar activos.
+     * @return lista de areas
+     */
+    ActivoFijoRs getActivoFijo();
+    
+    /**
+     * Buscar activos por parametros
+     * @param tipoId id del tipo de activo
+     * @param fechaCompra fecha de compra del activo
+     * @param serial serial del activo
+     * @return 
+     */
+    ActivoFijoRs getSearchActivoFijo(String tipoId, String fechaCompra, String serial);
+    
+     /**
+     * interfas de servicio para actualizar activos.
+     * @param id id del activo
+     * @param putActivoFijoRq 
+     * @return lista de areas
+     */
+     PutActivoFijoRs putActivoFijo(Integer id, PutActivoFijoRq putActivoFijoRq);
+}
