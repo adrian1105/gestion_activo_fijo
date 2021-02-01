@@ -56,10 +56,9 @@ public class ActivoFijoApiController {
     @ApiOperation(value = "Devuelve todos los activos de la empresa")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Se consultó exitosamente", response = ActivoFijoRs.class),
-        @ApiResponse(code = 400, message = "Error en la petición", response = ActivoFijoRs.class),
-        @ApiResponse(code = 401, message = "Unauthorized"),
-        @ApiResponse(code = 404, message = "Not Found", response = ActivoFijoRs.class),
-        @ApiResponse(code = 500, message = "Internal Server Error")})
+        @ApiResponse(code = 400, message = "Error en la petición, verifique los datos faltantes"),
+        @ApiResponse(code = 404, message = "Not Found  -  búsquedas sin resultados"),
+        @ApiResponse(code = 500, message = "Internal Server Error - errores que pasen en la capa de backend")})
     @RequestMapping(value = "/obtener-activo-fijos",
             produces = {"application/json"},
             method = RequestMethod.GET)
@@ -78,10 +77,9 @@ public class ActivoFijoApiController {
     @ApiOperation(value = "Devuelve todos los activos de la empresa según los parámetros")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Se consultó exitosamente", response = ActivoFijoRs.class),
-        @ApiResponse(code = 400, message = "Error en la petición", response = ActivoFijoRs.class),
-        @ApiResponse(code = 401, message = "Unauthorized"),
-        @ApiResponse(code = 404, message = "Not Found", response = ActivoFijoRs.class),
-        @ApiResponse(code = 500, message = "Internal Server Error")})
+        @ApiResponse(code = 400, message = "Error en la petición, verifique los datos faltantes"),
+        @ApiResponse(code = 404, message = "Not Found  -  búsquedas sin resultados"),
+        @ApiResponse(code = 500, message = "Internal Server Error - errores que pasen en la capa de backend")})
     @RequestMapping(value = "/buscar-activo-fijos",
             produces = {"application/json"},
             method = RequestMethod.GET)
@@ -102,17 +100,16 @@ public class ActivoFijoApiController {
     @ApiOperation(value = "Actualización de un activo de la empresa ")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Se consultó exitosamente", response = PutActivoFijoRs.class),
-        @ApiResponse(code = 400, message = "Error en la petición", response = PutActivoFijoRs.class),
-        @ApiResponse(code = 401, message = "Unauthorized"),
-        @ApiResponse(code = 404, message = "Not Found", response = PutActivoFijoRs.class),
-        @ApiResponse(code = 500, message = "Internal Server Error")})
+        @ApiResponse(code = 400, message = "Error en la petición, verifique los datos faltantes"),
+        @ApiResponse(code = 404, message = "Not Found  -  búsquedas sin resultados"),
+        @ApiResponse(code = 500, message = "Internal Server Error - errores que pasen en la capa de backend")})
     @RequestMapping(value = "/actualizar-activo-fijos/{id}",
             produces = {"application/json"},
             method = RequestMethod.PUT)
     ResponseEntity<PutActivoFijoRs> putActivoFijo(@PathVariable("id") Integer id,
-           @ApiParam(value = "PutActivoFijoRq", required = true)
-           @Valid @RequestBody PutActivoFijoRq putActivoFijoRq) {
-       
+            @ApiParam(value = "PutActivoFijoRq", required = true)
+            @Valid @RequestBody PutActivoFijoRq putActivoFijoRq) {
+
         try {
             PutActivoFijoRs activoFijo = activoFijoService.putActivoFijo(id, putActivoFijoRq);
             if (!"".equals(activoFijo.getNombreActivoFijo()) && activoFijo.getNombreActivoFijo() != null) {
@@ -123,25 +120,23 @@ public class ActivoFijoApiController {
             PutActivoFijoRs putActivoFijoRs = new PutActivoFijoRs();
             putActivoFijoRs.setDescripcion(e.getMessage());
             return new ResponseEntity<>(putActivoFijoRs, HttpStatus.BAD_REQUEST);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             return new ResponseEntity(TipoRespuesta.MESSAGE_INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
     @ApiOperation(value = "creación de activo de la empresa según los parámetros")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Se consultó exitosamente", response = CreateActivoFijoRs.class),
-        @ApiResponse(code = 400, message = "Error en la petición", response = CreateActivoFijoRs.class),
-        @ApiResponse(code = 401, message = "Unauthorized"),
-        @ApiResponse(code = 404, message = "Not Found", response = CreateActivoFijoRs.class),
-        @ApiResponse(code = 500, message = "Internal Server Error")})
+        @ApiResponse(code = 400, message = "Error en la petición, verifique los datos faltantes"),
+        @ApiResponse(code = 404, message = "Not Found  -  búsquedas sin resultados"),
+        @ApiResponse(code = 500, message = "Internal Server Error - errores que pasen en la capa de backend")})
     @RequestMapping(value = "/crear-activo-fijos",
             produces = {"application/json"},
             method = RequestMethod.POST)
     ResponseEntity<CreateActivoFijoRs> createActivoFijo(@ApiParam(value = "CreateActivoFijoRq", required = true)
-           @Valid @RequestBody CreateActivoFijoRq createActivoFijoRq) {
-       
+            @Valid @RequestBody CreateActivoFijoRq createActivoFijoRq) {
+
         try {
             CreateActivoFijoRs activoFijo = activoFijoService.CreateActivoFijo(createActivoFijoRq);
             if (activoFijo.getDescripcion().equals(TipoRespuesta.MESSAGE_CREATE_OK)) {
@@ -152,8 +147,7 @@ public class ActivoFijoApiController {
             CreateActivoFijoRs createActivoFijoRs = new CreateActivoFijoRs();
             createActivoFijoRs.setDescripcion(e.getMessage());
             return new ResponseEntity<>(createActivoFijoRs, HttpStatus.BAD_REQUEST);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             return new ResponseEntity(TipoRespuesta.MESSAGE_INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

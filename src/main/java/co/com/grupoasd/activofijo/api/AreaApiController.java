@@ -28,12 +28,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * Clase manejador de solicitudes HTTP.
+ *
  * @author adrian G
  */
 @RestController
 @Slf4j
 public class AreaApiController {
-    
+
     /**
      * Servicio de area.
      */
@@ -41,30 +42,30 @@ public class AreaApiController {
 
     /**
      * Constructor de los servicios.
+     *
      * @param areaService servicio de area
      */
     public AreaApiController(AreaService areaService) {
         this.areaService = areaService;
     }
-    
+
     @ApiOperation(value = "Devuelve todas las áreas de la empresa")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Se consultó exitosamente", response = AreaRs.class),
-        @ApiResponse(code = 400, message = "Error en la petición", response = AreaRs.class),
-        @ApiResponse(code = 401, message = "Unauthorized"),
-        @ApiResponse(code = 404, message = "Not Found", response = AreaRs.class),
-        @ApiResponse(code = 500, message = "Internal Server Error")})
+        @ApiResponse(code = 400, message = "Error en la petición, verifique los datos faltantes"),
+        @ApiResponse(code = 404, message = "Not Found  -  búsquedas sin resultados"),
+        @ApiResponse(code = 500, message = "Internal Server Error - errores que pasen en la capa de backend")})
     @RequestMapping(value = "/obtener-areas",
             produces = {"application/json"},
             method = RequestMethod.GET)
     ResponseEntity<AreaRs> getArea() {
-        try{
+        try {
             AreaRs listAreas = areaService.getArea();
-            if(listAreas.getAreas() != null){
+            if (listAreas.getAreas() != null) {
                 return new ResponseEntity<>(listAreas, HttpStatus.OK);
-            } 
+            }
             return new ResponseEntity<>(listAreas, HttpStatus.NOT_FOUND);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             return new ResponseEntity(TipoRespuesta.MESSAGE_INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

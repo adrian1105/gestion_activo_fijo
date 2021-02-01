@@ -50,10 +50,9 @@ public class PersonaApiController {
     @ApiOperation(value = "Devuelve todas las personas de la empresa")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Se consultó exitosamente", response = PersonaRs.class),
-        @ApiResponse(code = 400, message = "Error en la petición", response = PersonaRs.class),
-        @ApiResponse(code = 401, message = "Unauthorized"),
-        @ApiResponse(code = 404, message = "Not Found", response = PersonaRs.class),
-        @ApiResponse(code = 500, message = "Internal Server Error")})
+        @ApiResponse(code = 400, message = "Error en la petición, verifique los datos faltantes"),
+        @ApiResponse(code = 404, message = "Not Found  -  búsquedas sin resultados"),
+        @ApiResponse(code = 500, message = "Internal Server Error - errores que pasen en la capa de backend")})
     @RequestMapping(value = "/obtener-personas",
             produces = {"application/json"},
             method = RequestMethod.GET)
