@@ -26,6 +26,8 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,7 +45,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 public class ActivoFijoApiController {
-
+    private static final Logger logger = LoggerFactory.getLogger(ActivoFijoApiController.class);
     /**
      * Servicio de activoFijoService.
      */
@@ -93,6 +95,7 @@ public class ActivoFijoApiController {
             }
             return new ResponseEntity<>(listActivos, HttpStatus.NOT_FOUND);
         } catch (Exception ex) {
+            logger.error("Ocurrió un error", ex);
             return new ResponseEntity(TipoRespuesta.MESSAGE_INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -117,10 +120,12 @@ public class ActivoFijoApiController {
             }
             return new ResponseEntity(activoFijo, HttpStatus.NOT_FOUND);
         } catch (IllegalArgumentException e) {
+            logger.error("Ocurrió un error", e);
             PutActivoFijoRs putActivoFijoRs = new PutActivoFijoRs();
             putActivoFijoRs.setDescripcion(e.getMessage());
             return new ResponseEntity<>(putActivoFijoRs, HttpStatus.BAD_REQUEST);
         } catch (Exception ex) {
+            logger.error("Ocurrió un error", ex);
             return new ResponseEntity(TipoRespuesta.MESSAGE_INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -148,6 +153,7 @@ public class ActivoFijoApiController {
             createActivoFijoRs.setDescripcion(e.getMessage());
             return new ResponseEntity<>(createActivoFijoRs, HttpStatus.BAD_REQUEST);
         } catch (Exception ex) {
+            logger.error("Ocurrió un error", ex);
             return new ResponseEntity(TipoRespuesta.MESSAGE_INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

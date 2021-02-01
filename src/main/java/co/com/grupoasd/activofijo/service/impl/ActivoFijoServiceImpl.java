@@ -23,8 +23,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,6 +37,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ActivoFijoServiceImpl implements ActivoFijoService {
 
+    private static final Logger logger = LoggerFactory.getLogger(ActivoFijoServiceImpl.class);
     /**
      * Repositorio activoFijoRepository
      */
@@ -120,15 +121,15 @@ public class ActivoFijoServiceImpl implements ActivoFijoService {
             activoFijoRs.setDescripcion(TipoRespuesta.MESSAGE_NOT_FOUND);
 
         } catch (ParseException ex) {
-            Logger.getLogger(ActivoFijoServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(TipoRespuesta.MESSAGE_FECHA_BAD_REQUEST, ex);
             activoFijoRs.setDescripcion(TipoRespuesta.MESSAGE_FECHA_BAD_REQUEST);
             return activoFijoRs;
         } catch (NumberFormatException ex) {
-            Logger.getLogger(ActivoFijoServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(TipoRespuesta.MESSAGE_TIPO_ID_BAD_REQUEST, ex);
             activoFijoRs.setDescripcion(TipoRespuesta.MESSAGE_TIPO_ID_BAD_REQUEST);
             return activoFijoRs;
         } catch (Exception ex) {
-            Logger.getLogger(ActivoFijoServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error("Ocurrió un error", ex);
         }
         return activoFijoRs;
     }
@@ -171,9 +172,11 @@ public class ActivoFijoServiceImpl implements ActivoFijoService {
             putActivoFijoRs.setDescripcion(TipoRespuesta.MESSAGE_NO_CONTENT);
 
         } catch (ParseException ex) {
-            Logger.getLogger(ActivoFijoServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(TipoRespuesta.MESSAGE_FECHA_BAD_REQUEST, ex);
             putActivoFijoRs.setDescripcion(TipoRespuesta.MESSAGE_FECHA_BAD_REQUEST);
             return putActivoFijoRs;
+        } catch (Exception ex) {
+            logger.error("Ocurrió un error", ex);
         }
         return putActivoFijoRs;
     }

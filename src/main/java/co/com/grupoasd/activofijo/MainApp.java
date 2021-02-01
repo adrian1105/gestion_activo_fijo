@@ -30,7 +30,7 @@ import org.springframework.core.io.ClassPathResource;
 @SpringBootApplication
 @EnableCaching
 public class MainApp {
-
+    
     /**
      * @param args the command line arguments
      */
