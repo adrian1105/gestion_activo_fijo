@@ -1,12 +1,19 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* Archivo: PersonaApiController
+* Fecha: 30/01/2021
+* Todos los derechos de propiedad intelectual e industrial sobre esta
+* aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
+* Su uso, alteracion, reproduccion o modificacion sin el debido
+* consentimiento por escrito de GRUPO ASD S.A.S. quedan totalmente prohibidos.
+* 
+* Este programa se encuentra protegido por las disposiciones de la
+* Ley 23 de 1982 y demas normas concordantes sobre derechos de autor y
+* propiedad intelectual. Su uso no autorizado dara lugar a las sanciones
+* previstas en la Ley.
  */
 package co.com.grupoasd.activofijo.api;
 
 import co.com.grupoasd.activofijo.model.PersonaRs;
-import co.com.grupoasd.activofijo.entity.Persona;
 import co.com.grupoasd.activofijo.service.PersonaService;
 import co.com.grupoasd.activofijo.util.TipoRespuesta;
 import io.swagger.annotations.ApiOperation;
@@ -42,11 +49,11 @@ public class PersonaApiController {
     
     @ApiOperation(value = "Devuelve todas las personas de la empresa")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Se consultó exitosamente", response = Persona.class),
-        @ApiResponse(code = 400, message = "Error en la petición", response = Persona.class),
+        @ApiResponse(code = 200, message = "Se consultó exitosamente", response = PersonaRs.class),
+        @ApiResponse(code = 400, message = "Error en la petición", response = PersonaRs.class),
         @ApiResponse(code = 401, message = "Unauthorized"),
-        @ApiResponse(code = 404, message = "Not Found"),
-        @ApiResponse(code = 500, message = "Internal Server Error", response = Persona.class)})
+        @ApiResponse(code = 404, message = "Not Found", response = PersonaRs.class),
+        @ApiResponse(code = 500, message = "Internal Server Error")})
     @RequestMapping(value = "/obtener-personas",
             produces = {"application/json"},
             method = RequestMethod.GET)

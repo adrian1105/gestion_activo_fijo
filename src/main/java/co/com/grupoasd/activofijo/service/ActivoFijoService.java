@@ -13,11 +13,11 @@
  */
 package co.com.grupoasd.activofijo.service;
 
-import co.com.grupoasd.activofijo.entity.ActivoFijo;
 import co.com.grupoasd.activofijo.model.ActivoFijoRs;
+import co.com.grupoasd.activofijo.model.CreateActivoFijoRq;
+import co.com.grupoasd.activofijo.model.CreateActivoFijoRs;
 import co.com.grupoasd.activofijo.model.PutActivoFijoRs;
 import co.com.grupoasd.activofijo.model.PutActivoFijoRq;
-import java.util.Optional;
 
 /**
  * Interface de ActivoFijo.
@@ -46,4 +46,11 @@ public interface ActivoFijoService {
      * @return lista de areas
      */
      PutActivoFijoRs putActivoFijo(Integer id, PutActivoFijoRq putActivoFijoRq);
+     
+     /**
+      * Resultado de creación del cativo
+      * @param createActivoFijoRq
+      * @return resultado de creación del activo
+      */
+     CreateActivoFijoRs CreateActivoFijo(CreateActivoFijoRq createActivoFijoRq);
 }

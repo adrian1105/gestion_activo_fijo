@@ -18,7 +18,6 @@ import co.com.grupoasd.activofijo.model.AreaRs;
 import co.com.grupoasd.activofijo.repository.AreaRepository;
 import co.com.grupoasd.activofijo.service.AreaService;
 import co.com.grupoasd.activofijo.util.TipoRespuesta;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

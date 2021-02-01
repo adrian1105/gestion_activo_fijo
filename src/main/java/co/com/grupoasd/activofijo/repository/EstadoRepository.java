@@ -1,6 +1,6 @@
 /*
-* Archivo: Mensaje
-* Fecha: 30/01/2021
+* Archivo: EstadoRepository
+* Fecha: 31/01/2021
 * Todos los derechos de propiedad intelectual e industrial sobre esta
 * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
 * Su uso, alteracion, reproduccion o modificacion sin el debido
@@ -11,18 +11,15 @@
 * propiedad intelectual. Su uso no autorizado dara lugar a las sanciones
 * previstas en la Ley.
  */
-package co.com.grupoasd.activofijo.message;
+package co.com.grupoasd.activofijo.repository;
 
-import lombok.Data;
+import co.com.grupoasd.activofijo.entity.Estado;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Clase mensajes de peticiones.
+ * Clase administradora de los datos.
  * @author adrian G
  */
-@Data
-public class Mensaje {
-    /**
-     * Mensaje.
-     */
-    private String descripcion;
+public interface EstadoRepository extends JpaRepository<Estado, Integer> {
+    
 }

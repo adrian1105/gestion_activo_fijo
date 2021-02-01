@@ -14,7 +14,6 @@
 package co.com.grupoasd.activofijo.service;
 
 import co.com.grupoasd.activofijo.model.AreaRs;
-import java.util.List;
 
 /**
  * Interface de area.

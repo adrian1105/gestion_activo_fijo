@@ -13,8 +13,9 @@
  */
 package co.com.grupoasd.activofijo.api;
 
-import co.com.grupoasd.activofijo.entity.ActivoFijo;
 import co.com.grupoasd.activofijo.model.ActivoFijoRs;
+import co.com.grupoasd.activofijo.model.CreateActivoFijoRq;
+import co.com.grupoasd.activofijo.model.CreateActivoFijoRs;
 import co.com.grupoasd.activofijo.model.PutActivoFijoRq;
 import co.com.grupoasd.activofijo.model.PutActivoFijoRs;
 import co.com.grupoasd.activofijo.service.ActivoFijoService;
@@ -27,7 +28,6 @@ import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,11 +55,11 @@ public class ActivoFijoApiController {
 
     @ApiOperation(value = "Devuelve todos los activos de la empresa")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Se consultó exitosamente", response = ActivoFijo.class),
-        @ApiResponse(code = 400, message = "Error en la petición", response = ActivoFijo.class),
+        @ApiResponse(code = 200, message = "Se consultó exitosamente", response = ActivoFijoRs.class),
+        @ApiResponse(code = 400, message = "Error en la petición", response = ActivoFijoRs.class),
         @ApiResponse(code = 401, message = "Unauthorized"),
-        @ApiResponse(code = 404, message = "Not Found"),
-        @ApiResponse(code = 500, message = "Internal Server Error", response = ActivoFijo.class)})
+        @ApiResponse(code = 404, message = "Not Found", response = ActivoFijoRs.class),
+        @ApiResponse(code = 500, message = "Internal Server Error")})
     @RequestMapping(value = "/obtener-activo-fijos",
             produces = {"application/json"},
             method = RequestMethod.GET)
@@ -75,13 +75,13 @@ public class ActivoFijoApiController {
         }
     }
 
-    @ApiOperation(value = "Devuelve todos los activos de la empresa segun los parametros")
+    @ApiOperation(value = "Devuelve todos los activos de la empresa según los parámetros")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Se consultó exitosamente", response = ActivoFijo.class),
-        @ApiResponse(code = 400, message = "Error en la petición", response = ActivoFijo.class),
+        @ApiResponse(code = 200, message = "Se consultó exitosamente", response = ActivoFijoRs.class),
+        @ApiResponse(code = 400, message = "Error en la petición", response = ActivoFijoRs.class),
         @ApiResponse(code = 401, message = "Unauthorized"),
-        @ApiResponse(code = 404, message = "Not Found"),
-        @ApiResponse(code = 500, message = "Internal Server Error", response = ActivoFijo.class)})
+        @ApiResponse(code = 404, message = "Not Found", response = ActivoFijoRs.class),
+        @ApiResponse(code = 500, message = "Internal Server Error")})
     @RequestMapping(value = "/buscar-activo-fijos",
             produces = {"application/json"},
             method = RequestMethod.GET)
@@ -99,16 +99,16 @@ public class ActivoFijoApiController {
         }
     }
 
-    @ApiOperation(value = "Devuelve todos los activos de la empresa segun los parametros")
+    @ApiOperation(value = "Actualización de un activo de la empresa ")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Se consultó exitosamente", response = ActivoFijo.class),
-        @ApiResponse(code = 400, message = "Error en la petición", response = ActivoFijo.class),
+        @ApiResponse(code = 200, message = "Se consultó exitosamente", response = PutActivoFijoRs.class),
+        @ApiResponse(code = 400, message = "Error en la petición", response = PutActivoFijoRs.class),
         @ApiResponse(code = 401, message = "Unauthorized"),
-        @ApiResponse(code = 404, message = "Not Found"),
-        @ApiResponse(code = 500, message = "Internal Server Error", response = ActivoFijo.class)})
+        @ApiResponse(code = 404, message = "Not Found", response = PutActivoFijoRs.class),
+        @ApiResponse(code = 500, message = "Internal Server Error")})
     @RequestMapping(value = "/actualizar-activo-fijos/{id}",
             produces = {"application/json"},
-            method = RequestMethod.POST)
+            method = RequestMethod.PUT)
     ResponseEntity<PutActivoFijoRs> putActivoFijo(@PathVariable("id") Integer id,
            @ApiParam(value = "PutActivoFijoRq", required = true)
            @Valid @RequestBody PutActivoFijoRq putActivoFijoRq) {
@@ -123,6 +123,35 @@ public class ActivoFijoApiController {
             PutActivoFijoRs putActivoFijoRs = new PutActivoFijoRs();
             putActivoFijoRs.setDescripcion(e.getMessage());
             return new ResponseEntity<>(putActivoFijoRs, HttpStatus.BAD_REQUEST);
+        }
+        catch (Exception ex) {
+            return new ResponseEntity(TipoRespuesta.MESSAGE_INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    @ApiOperation(value = "creación de activo de la empresa según los parámetros")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Se consultó exitosamente", response = CreateActivoFijoRs.class),
+        @ApiResponse(code = 400, message = "Error en la petición", response = CreateActivoFijoRs.class),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 404, message = "Not Found", response = CreateActivoFijoRs.class),
+        @ApiResponse(code = 500, message = "Internal Server Error")})
+    @RequestMapping(value = "/crear-activo-fijos",
+            produces = {"application/json"},
+            method = RequestMethod.POST)
+    ResponseEntity<CreateActivoFijoRs> createActivoFijo(@ApiParam(value = "CreateActivoFijoRq", required = true)
+           @Valid @RequestBody CreateActivoFijoRq createActivoFijoRq) {
+       
+        try {
+            CreateActivoFijoRs activoFijo = activoFijoService.CreateActivoFijo(createActivoFijoRq);
+            if (activoFijo.getDescripcion().equals(TipoRespuesta.MESSAGE_CREATE_OK)) {
+                return new ResponseEntity(activoFijo, HttpStatus.OK);
+            }
+            return new ResponseEntity(activoFijo, HttpStatus.NOT_FOUND);
+        } catch (IllegalArgumentException e) {
+            CreateActivoFijoRs createActivoFijoRs = new CreateActivoFijoRs();
+            createActivoFijoRs.setDescripcion(e.getMessage());
+            return new ResponseEntity<>(createActivoFijoRs, HttpStatus.BAD_REQUEST);
         }
         catch (Exception ex) {
             return new ResponseEntity(TipoRespuesta.MESSAGE_INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);

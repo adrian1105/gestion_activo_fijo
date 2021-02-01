@@ -18,7 +18,6 @@ import co.com.grupoasd.activofijo.model.AreaRs;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import co.com.grupoasd.activofijo.entity.Area;
 import co.com.grupoasd.activofijo.util.TipoRespuesta;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -50,11 +49,11 @@ public class AreaApiController {
     
     @ApiOperation(value = "Devuelve todas las áreas de la empresa")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Se consultó exitosamente", response = Area.class),
-        @ApiResponse(code = 400, message = "Error en la petición", response = Area.class),
+        @ApiResponse(code = 200, message = "Se consultó exitosamente", response = AreaRs.class),
+        @ApiResponse(code = 400, message = "Error en la petición", response = AreaRs.class),
         @ApiResponse(code = 401, message = "Unauthorized"),
-        @ApiResponse(code = 404, message = "Not Found"),
-        @ApiResponse(code = 500, message = "Internal Server Error", response = Area.class)})
+        @ApiResponse(code = 404, message = "Not Found", response = AreaRs.class),
+        @ApiResponse(code = 500, message = "Internal Server Error")})
     @RequestMapping(value = "/obtener-areas",
             produces = {"application/json"},
             method = RequestMethod.GET)

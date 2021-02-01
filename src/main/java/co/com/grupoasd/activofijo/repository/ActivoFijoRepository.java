@@ -40,4 +40,10 @@ public interface ActivoFijoRepository extends JpaRepository<ActivoFijo, Integer>
      * @return 
      */
     ActivoFijo findByActivoId(Integer id);
+    /**
+     * Verificacion del serial del activo
+     * @param serial del activo fijo
+     * @return  objeto del activo
+     */
+    ActivoFijo findBySerial(String serial);
 }

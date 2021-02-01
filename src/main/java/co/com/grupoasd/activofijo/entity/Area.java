@@ -36,7 +36,7 @@ import lombok.Data;
 @Data
 public class Area implements Serializable {
     /**
-     * 
+     * número de versión que posee cada clase Serializable.
      */
     private static final long serialVersionUID = 1L;
     

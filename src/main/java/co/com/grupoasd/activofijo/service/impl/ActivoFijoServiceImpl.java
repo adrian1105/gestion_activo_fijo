@@ -6,11 +6,15 @@
 package co.com.grupoasd.activofijo.service.impl;
 
 import co.com.grupoasd.activofijo.entity.ActivoFijo;
+import co.com.grupoasd.activofijo.entity.Estado;
 import co.com.grupoasd.activofijo.entity.TipoActivo;
 import co.com.grupoasd.activofijo.model.ActivoFijoRs;
+import co.com.grupoasd.activofijo.model.CreateActivoFijoRq;
+import co.com.grupoasd.activofijo.model.CreateActivoFijoRs;
 import co.com.grupoasd.activofijo.model.PutActivoFijoRq;
 import co.com.grupoasd.activofijo.model.PutActivoFijoRs;
 import co.com.grupoasd.activofijo.repository.ActivoFijoRepository;
+import co.com.grupoasd.activofijo.repository.EstadoRepository;
 import co.com.grupoasd.activofijo.repository.TipoActivoRepository;
 import co.com.grupoasd.activofijo.service.ActivoFijoService;
 import co.com.grupoasd.activofijo.util.TipoRespuesta;
@@ -41,17 +45,24 @@ public class ActivoFijoServiceImpl implements ActivoFijoService {
      * Repositorio tipoActivoRepository.
      */
     private final TipoActivoRepository tipoActivoRepository;
+    /**
+     *
+     */
+    private final EstadoRepository EstadoRepository;
 
     /**
      * Constructor.
      *
      * @param activoFijoRepository repositorio activo fijo
      * @param tipoActivoRepository repositorio tipoActivoRepository
+     * @param EstadoRepository repositorio EstadoRepository
      */
     public ActivoFijoServiceImpl(ActivoFijoRepository activoFijoRepository,
-            TipoActivoRepository tipoActivoRepository) {
+            TipoActivoRepository tipoActivoRepository,
+            EstadoRepository EstadoRepository) {
         this.activoFijoRepository = activoFijoRepository;
         this.tipoActivoRepository = tipoActivoRepository;
+        this.EstadoRepository = EstadoRepository;
     }
 
     @Override
@@ -147,7 +158,7 @@ public class ActivoFijoServiceImpl implements ActivoFijoService {
 
             if (putActivoFijoRq.getFechaBaja() != null && !"".equals(putActivoFijoRq.getFechaBaja())) {
                 date1 = new SimpleDateFormat("yyyy-MM-dd").parse(putActivoFijoRq.getFechaBaja());
-                if (date1.compareTo(activoFijo.getFechaCompra()) > 0 ) {
+                if (date1.compareTo(activoFijo.getFechaCompra()) > 0) {
                     putActivoFijoRs.setDescripcion(TipoRespuesta.MESSAGE_FECHA_BAJA_BAD_REQUEST);
                     return putActivoFijoRs;
                 }
@@ -165,6 +176,51 @@ public class ActivoFijoServiceImpl implements ActivoFijoService {
             return putActivoFijoRs;
         }
         return putActivoFijoRs;
+    }
+
+    @Override
+    public CreateActivoFijoRs CreateActivoFijo(CreateActivoFijoRq createActivoFijoRq) {
+        CreateActivoFijoRs createActivoFijoRs = new CreateActivoFijoRs();
+        ActivoFijo activoFijoObj = new ActivoFijo();
+        Optional<TipoActivo> tipoActivo = null;
+        Optional<Estado> estadoActivo = null;
+
+        ActivoFijo activoFijo = activoFijoRepository.findBySerial(createActivoFijoRq.getSerial());
+        if (activoFijo != null) {
+            createActivoFijoRs.setDescripcion(TipoRespuesta.MESSAGE_SERIAL_BAD_REQUEST);
+            return createActivoFijoRs;
+        }
+
+        tipoActivo = tipoActivoRepository.findById(createActivoFijoRq.getTipoId());
+        if (tipoActivo.isEmpty()) {
+            createActivoFijoRs.setDescripcion(TipoRespuesta.MESSAGE_TIPO_ACTIVO_NOT_FOUND);
+            return createActivoFijoRs;
+        }
+
+        estadoActivo = EstadoRepository.findById(createActivoFijoRq.getEstadoId());
+        if (estadoActivo.isEmpty()) {
+            createActivoFijoRs.setDescripcion(TipoRespuesta.MESSAGE_ESTADO_NOT_FOUND);
+            return createActivoFijoRs;
+        }
+
+        activoFijoObj.setNombre(createActivoFijoRq.getNombre());
+        activoFijoObj.setDescripcion(createActivoFijoRq.getDescripcion());
+        activoFijoObj.setTipoId(tipoActivo.get());
+        activoFijoObj.setSerial(createActivoFijoRq.getSerial());
+        activoFijoObj.setNumeroInterno(createActivoFijoRq.getNumeroInterno());
+        activoFijoObj.setPeso(createActivoFijoRq.getPeso());
+        activoFijoObj.setAlto(createActivoFijoRq.getAlto());
+        activoFijoObj.setAncho(createActivoFijoRq.getAncho());
+        activoFijoObj.setLargo(createActivoFijoRq.getLargo());
+        activoFijoObj.setValorCompra(createActivoFijoRq.getValorCompra());
+        activoFijoObj.setFechaCompra(createActivoFijoRq.getFechaCompra());
+        activoFijoObj.setColor(createActivoFijoRq.getColor());
+        activoFijoObj.setEstadoId(estadoActivo.get());
+
+        activoFijoRepository.save(activoFijoObj);
+        createActivoFijoRs.setDescripcion(TipoRespuesta.MESSAGE_CREATE_OK);
+
+        return createActivoFijoRs;
     }
 
 }
