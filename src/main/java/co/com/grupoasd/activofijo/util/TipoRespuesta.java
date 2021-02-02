@@ -23,8 +23,13 @@ public class TipoRespuesta {
     public static final String MESSAGE_NOT_FOUND = "No se encontraron resultados para la búsqueda";
     public static final String MESSAGE_NO_CONTENT = "Se actualizo el activo exitosamente";
     public static final String MESSAGE_TIPO_ACTIVO_NOT_FOUND = "El tipo de activo no existe";
+    public static final String MESSAGE_ACTIVO_FIJO_NOT_FOUND = "El activo no existe";
+    public static final String MESSAGE_ACTIVO_FIJO_ASIGNADO_NOT_FOUND = "El activo ya esta asignado";
+    public static final String MESSAGE_AREA_NOT_FOUND = "El área no existe";
+    public static final String MESSAGE_PERSONA_NOT_FOUND = "La persona no existe";
     public static final String MESSAGE_ESTADO_NOT_FOUND = "El estado del activo no existe";
     public static final String MESSAGE_OK = "Se encontraron resultados exitosamente para la petición";
+    public static final String MESSAGE_ACTIVO_OK = "El activo fue asignado correctamente";
     public static final String MESSAGE_CREATE_OK = "El activo fue creado exitosamente";
     public static final String MESSAGE_INTERNAL_SERVER_ERROR = "Se ha presentado un error con el servicio, por favor consulte con su administrador ";
     public static final String MESSAGE_BAD_REQUEST = "Faltan datos para la petición, por favor valide de nuevo ";

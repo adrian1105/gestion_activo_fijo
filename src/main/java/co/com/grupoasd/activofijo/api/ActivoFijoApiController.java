@@ -64,7 +64,7 @@ public class ActivoFijoApiController {
     @RequestMapping(value = "/obtener-activo-fijos",
             produces = {"application/json"},
             method = RequestMethod.GET)
-    ResponseEntity<ActivoFijoRs> getActivoFijo() {
+    public ResponseEntity<ActivoFijoRs> getActivoFijo() {
         try {
             ActivoFijoRs listActivos = activoFijoService.getActivoFijo();
             if (listActivos.getActivoFijos() != null) {
@@ -143,7 +143,7 @@ public class ActivoFijoApiController {
             @Valid @RequestBody CreateActivoFijoRq createActivoFijoRq) {
 
         try {
-            CreateActivoFijoRs activoFijo = activoFijoService.CreateActivoFijo(createActivoFijoRq);
+            CreateActivoFijoRs activoFijo = activoFijoService.createActivoFijo(createActivoFijoRq);
             if (activoFijo.getDescripcion().equals(TipoRespuesta.MESSAGE_CREATE_OK)) {
                 return new ResponseEntity(activoFijo, HttpStatus.OK);
             }

@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
@@ -58,7 +59,7 @@ public class AreaApiController {
     @RequestMapping(value = "/obtener-areas",
             produces = {"application/json"},
             method = RequestMethod.GET)
-    ResponseEntity<AreaRs> getArea() {
+    public ResponseEntity<AreaRs> getArea() {
         try {
             AreaRs listAreas = areaService.getArea();
             if (listAreas.getAreas() != null) {

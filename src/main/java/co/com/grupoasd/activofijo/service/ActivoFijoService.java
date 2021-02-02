@@ -52,5 +52,5 @@ public interface ActivoFijoService {
       * @param createActivoFijoRq
       * @return resultado de creación del activo
       */
-     CreateActivoFijoRs CreateActivoFijo(CreateActivoFijoRq createActivoFijoRq);
+     CreateActivoFijoRs createActivoFijo(CreateActivoFijoRq createActivoFijoRq);
 }

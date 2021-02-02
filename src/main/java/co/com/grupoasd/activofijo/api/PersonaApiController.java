@@ -56,7 +56,7 @@ public class PersonaApiController {
     @RequestMapping(value = "/obtener-personas",
             produces = {"application/json"},
             method = RequestMethod.GET)
-    ResponseEntity<PersonaRs> getPersona() {
+    public ResponseEntity<PersonaRs> getPersona() {
         try{
             PersonaRs listPersonas = personaService.getPersona();
             if(listPersonas.getPersonas()!= null){

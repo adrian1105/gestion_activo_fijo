@@ -45,7 +45,7 @@ public class PersonaServiceImpl implements PersonaService {
      */
     @Override
     public PersonaRs getPersona() {
-         PersonaRs areaRs = new PersonaRs();
+        PersonaRs areaRs = new PersonaRs();
         List<Persona> personas = personaRepository.findAll();
         if (!personas.isEmpty()) {
             areaRs.setPersonas(personas);

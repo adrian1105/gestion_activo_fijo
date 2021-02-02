@@ -182,7 +182,7 @@ public class ActivoFijoServiceImpl implements ActivoFijoService {
     }
 
     @Override
-    public CreateActivoFijoRs CreateActivoFijo(CreateActivoFijoRq createActivoFijoRq) {
+    public CreateActivoFijoRs createActivoFijo(CreateActivoFijoRq createActivoFijoRq) {
         CreateActivoFijoRs createActivoFijoRs = new CreateActivoFijoRs();
         ActivoFijo activoFijoObj = new ActivoFijo();
         Optional<TipoActivo> tipoActivo = null;
