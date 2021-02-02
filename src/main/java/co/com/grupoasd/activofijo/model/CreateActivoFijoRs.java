@@ -1,6 +1,6 @@
 /*
-* Archivo: Mensaje
-* Fecha: 30/01/2021
+* Archivo: CreateActivoFijoRs
+* Fecha: 31/01/2021
 * Todos los derechos de propiedad intelectual e industrial sobre esta
 * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
 * Su uso, alteracion, reproduccion o modificacion sin el debido
@@ -11,18 +11,14 @@
 * propiedad intelectual. Su uso no autorizado dara lugar a las sanciones
 * previstas en la Ley.
  */
-package co.com.grupoasd.activofijo.message;
+package co.com.grupoasd.activofijo.model;
 
-import lombok.Data;
+import co.com.grupoasd.activofijo.message.Mensaje;
 
 /**
- * Clase mensajes de peticiones.
+ * Clase para guardar resultset de creacion de activo.
  * @author adrian G
  */
-@Data
-public class Mensaje {
-    /**
-     * Mensaje.
-     */
-    private String descripcion;
+public class CreateActivoFijoRs extends Mensaje{
+    
 }

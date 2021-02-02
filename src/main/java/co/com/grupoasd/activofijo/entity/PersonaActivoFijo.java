@@ -1,6 +1,6 @@
 /*
-* Archivo: Area
-* Fecha: 30/01/2021
+* Archivo: PersonaActivoFijo
+* Fecha: 01/02/2021
 * Todos los derechos de propiedad intelectual e industrial sobre esta
 * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
 * Su uso, alteracion, reproduccion o modificacion sin el debido
@@ -13,7 +13,6 @@
  */
 package co.com.grupoasd.activofijo.entity;
 
-import com.sun.istack.NotNull;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -24,17 +23,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
- * Clase entity de la tabla area.
- * @author adrian G
+ *
+ * @author amgonzalez
  */
 @Entity
-@Table(name = "area")
+@Table(name = "persona_activos_fijos")
 @Data
-public class Area implements Serializable {
+public class PersonaActivoFijo implements Serializable {
     /**
      * número de versión que posee cada clase Serializable.
      */
@@ -47,29 +45,19 @@ public class Area implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Integer id;
+    private Integer personaActivoId;
     
     /**
-     * nombre del área.
+     * area_id.
      */
-    @NotNull
-    @Size(min = 5, max = 150)
-    @Column(name = "nombre")
-    private String nombre;
-    
-    /**
-     * ciudad de ubicación del área
-     */
-    @JoinColumn(name = "municipio_id", referencedColumnName = "id")
+    @JoinColumn(name = "persona_Id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Municipio municipioId;
+    private Persona personaId;
     
     /**
-     * codigo del área.
+     * activofijo_id.
      */
-    @NotNull
-    @Size(max = 10)
-    @Column(name = "codigo")
-    private String codigo;
-    
+    @JoinColumn(name = "activofijo_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private ActivoFijo activoFijoId;
 }

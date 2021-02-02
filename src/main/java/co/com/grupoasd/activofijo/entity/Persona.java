@@ -1,5 +1,5 @@
 /*
-* Archivo: Area
+* Archivo: Persona
 * Fecha: 30/01/2021
 * Todos los derechos de propiedad intelectual e industrial sobre esta
 * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
@@ -32,9 +32,9 @@ import lombok.Data;
  * @author adrian G
  */
 @Entity
-@Table(name = "area")
+@Table(name = "persona")
 @Data
-public class Area implements Serializable {
+public class Persona implements Serializable {
     /**
      * número de versión que posee cada clase Serializable.
      */
@@ -53,23 +53,30 @@ public class Area implements Serializable {
      * nombre del área.
      */
     @NotNull
-    @Size(min = 5, max = 150)
-    @Column(name = "nombre")
-    private String nombre;
+    @Size(min = 5, max = 100)
+    @Column(name = "nombres")
+    private String nombres;
+    
+    /**
+     * nombre del área.
+     */
+    @NotNull
+    @Size(min = 5, max = 100)
+    @Column(name = "apellidos")
+    private String apellidos;
+    
+    /**
+     * nombre del área.
+     */
+    @NotNull
+    @Size(min = 10, max = 15)
+    @Column(name = "celular")
+    private String celular;
     
     /**
      * ciudad de ubicación del área
      */
-    @JoinColumn(name = "municipio_id", referencedColumnName = "id")
+    @JoinColumn(name = "area_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Municipio municipioId;
-    
-    /**
-     * codigo del área.
-     */
-    @NotNull
-    @Size(max = 10)
-    @Column(name = "codigo")
-    private String codigo;
-    
+    private Area areaId;
 }

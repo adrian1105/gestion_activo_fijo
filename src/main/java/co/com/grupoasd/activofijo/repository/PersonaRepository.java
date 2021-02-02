@@ -1,5 +1,5 @@
 /*
-* Archivo: Mensaje
+* Archivo: PersonaRepository
 * Fecha: 30/01/2021
 * Todos los derechos de propiedad intelectual e industrial sobre esta
 * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
@@ -11,18 +11,15 @@
 * propiedad intelectual. Su uso no autorizado dara lugar a las sanciones
 * previstas en la Ley.
  */
-package co.com.grupoasd.activofijo.message;
+package co.com.grupoasd.activofijo.repository;
 
-import lombok.Data;
+import co.com.grupoasd.activofijo.entity.Persona;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Clase mensajes de peticiones.
+ * Clase administradora de los datos.
  * @author adrian G
  */
-@Data
-public class Mensaje {
-    /**
-     * Mensaje.
-     */
-    private String descripcion;
+public interface PersonaRepository extends JpaRepository<Persona, Integer> {
+    
 }

@@ -1,6 +1,6 @@
 /*
-* Archivo: AreaRs
-* Fecha: 30/01/2021
+* Archivo: AreaActivoFijoRq
+* Fecha: 01/02/2021
 * Todos los derechos de propiedad intelectual e industrial sobre esta
 * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
 * Su uso, alteracion, reproduccion o modificacion sin el debido
@@ -13,19 +13,22 @@
  */
 package co.com.grupoasd.activofijo.model;
 
-import co.com.grupoasd.activofijo.entity.Area;
-import co.com.grupoasd.activofijo.message.Mensaje;
-import java.util.List;
+import io.swagger.annotations.ApiModelProperty;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
- * Clase para guardar resultset de area.
- * @author adrian G
+ * objeto de ingreso.
+ * @author amgonzalez
  */
 @Data
-public class AreaRs extends Mensaje{
-    /**
-     * lista de las areas.
-     */
-    private List<Area> areas;
+public class AreaActivoFijoRq {
+
+    @ApiModelProperty(value = "id del área")
+    @NotNull(message = "El serial no areaId valores nulos. Por favor verifique e intente de nuevo.")
+    private Integer areaId;
+
+    @ApiModelProperty(value = "id del activo")
+    @NotNull(message = "El activoId no permite valores nulos. Por favor verifique e intente de nuevo.")
+    private Integer activoId;
 }

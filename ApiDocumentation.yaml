@@ -1,0 +1,380 @@
+swagger: '2.0'
+info:
+  description: Documentación del Api, para la prueba tecnica de Java
+  version: '1.0'
+  title: Api Documentation
+  termsOfService: 'urn:tos'
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0'
+host: 'localhost:8082'
+basePath: /activos-fijos/v1
+tags:
+  - name: activo-fijo-api-controller
+    description: Activo Fijo Api Controller
+  - name: persona-api-controller
+    description: Persona Api Controller
+  - name: area-api-controller
+    description: Area Api Controller
+paths:
+  '/actualizar-activo-fijos/{id}':
+    put:
+      tags:
+        - activo-fijo-api-controller
+      summary: 'Actualización de un activo de la empresa '
+      operationId: putActivoFijoUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+        - in: body
+          name: putActivoFijoRq
+          description: PutActivoFijoRq
+          required: true
+          schema:
+            $ref: '#/definitions/PutActivoFijoRq'
+      responses:
+        '200':
+          description: Se consultó exitosamente
+          schema:
+            $ref: '#/definitions/PutActivoFijoRs'
+        '201':
+          description: Created
+        '400':
+          description: 'Error en la petición, verifique los datos faltantes'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found  -  búsquedas sin resultados
+        '500':
+          description: Internal Server Error - errores que pasen en la capa de backend
+  /buscar-activo-fijos:
+    get:
+      tags:
+        - activo-fijo-api-controller
+      summary: Devuelve todos los activos de la empresa según los parámetros
+      operationId: getSearchActivoFijoUsingGET
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: tipoId
+          in: query
+          description: tipoId
+          required: false
+          type: string
+        - name: fechaCompra
+          in: query
+          description: fechaCompra
+          required: false
+          type: string
+        - name: serial
+          in: query
+          description: serial
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Se consultó exitosamente
+          schema:
+            $ref: '#/definitions/ActivoFijoRs'
+        '400':
+          description: 'Error en la petición, verifique los datos faltantes'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found  -  búsquedas sin resultados
+        '500':
+          description: Internal Server Error - errores que pasen en la capa de backend
+  /crear-activo-fijos:
+    post:
+      tags:
+        - activo-fijo-api-controller
+      summary: creación de activo de la empresa según los parámetros
+      operationId: createActivoFijoUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: createActivoFijoRq
+          description: CreateActivoFijoRq
+          required: true
+          schema:
+            $ref: '#/definitions/CreateActivoFijoRq'
+      responses:
+        '200':
+          description: Se consultó exitosamente
+          schema:
+            $ref: '#/definitions/CreateActivoFijoRs'
+        '201':
+          description: Created
+        '400':
+          description: 'Error en la petición, verifique los datos faltantes'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found  -  búsquedas sin resultados
+        '500':
+          description: Internal Server Error - errores que pasen en la capa de backend
+  /obtener-activo-fijos:
+    get:
+      tags:
+        - activo-fijo-api-controller
+      summary: Devuelve todos los activos de la empresa
+      operationId: getActivoFijoUsingGET
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Se consultó exitosamente
+          schema:
+            $ref: '#/definitions/ActivoFijoRs'
+        '400':
+          description: 'Error en la petición, verifique los datos faltantes'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found  -  búsquedas sin resultados
+        '500':
+          description: Internal Server Error - errores que pasen en la capa de backend
+  /obtener-areas:
+    get:
+      tags:
+        - area-api-controller
+      summary: Devuelve todas las áreas de la empresa
+      operationId: getAreaUsingGET
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Se consultó exitosamente
+          schema:
+            $ref: '#/definitions/AreaRs'
+        '400':
+          description: 'Error en la petición, verifique los datos faltantes'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found  -  búsquedas sin resultados
+        '500':
+          description: Internal Server Error - errores que pasen en la capa de backend
+  /obtener-personas:
+    get:
+      tags:
+        - persona-api-controller
+      summary: Devuelve todas las personas de la empresa
+      operationId: getPersonaUsingGET
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Se consultó exitosamente
+          schema:
+            $ref: '#/definitions/PersonaRs'
+        '400':
+          description: 'Error en la petición, verifique los datos faltantes'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found  -  búsquedas sin resultados
+        '500':
+          description: Internal Server Error - errores que pasen en la capa de backend
+definitions:
+  ActivoFijo:
+    type: object
+    properties:
+      activoId:
+        type: integer
+        format: int32
+      alto:
+        type: string
+      ancho:
+        type: string
+      color:
+        type: string
+      descripcion:
+        type: string
+      estadoId:
+        $ref: '#/definitions/Estado'
+      fechaBaja:
+        type: string
+        format: date-time
+      fechaCompra:
+        type: string
+        format: date-time
+      largo:
+        type: string
+      nombre:
+        type: string
+      numeroInterno:
+        type: string
+      peso:
+        type: string
+      serial:
+        type: string
+      tipoId:
+        $ref: '#/definitions/TipoActivo'
+      valorCompra:
+        type: string
+  ActivoFijoRs:
+    type: object
+    properties:
+      activoFijos:
+        type: array
+        items:
+          $ref: '#/definitions/ActivoFijo'
+      descripcion:
+        type: string
+  Area:
+    type: object
+    properties:
+      codigo:
+        type: string
+      id:
+        type: integer
+        format: int32
+      municipioId:
+        $ref: '#/definitions/Municipio'
+      nombre:
+        type: string
+  AreaRs:
+    type: object
+    properties:
+      areas:
+        type: array
+        items:
+          $ref: '#/definitions/Area'
+      descripcion:
+        type: string
+  CreateActivoFijoRq:
+    type: object
+    properties:
+      alto:
+        type: string
+      ancho:
+        type: string
+      color:
+        type: string
+      descripcion:
+        type: string
+      estadoId:
+        type: integer
+        format: int32
+      fechaCompra:
+        type: string
+        format: date-time
+      largo:
+        type: string
+      nombre:
+        type: string
+      numeroInterno:
+        type: string
+      peso:
+        type: string
+      serial:
+        type: string
+      tipoId:
+        type: integer
+        format: int32
+      valorCompra:
+        type: string
+  CreateActivoFijoRs:
+    type: object
+    properties:
+      descripcion:
+        type: string
+  Estado:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      nombre:
+        type: string
+  Municipio:
+    type: object
+    properties:
+      codigo:
+        type: string
+      id:
+        type: integer
+        format: int32
+      nombre:
+        type: string
+  Persona:
+    type: object
+    properties:
+      apellidos:
+        type: string
+      areaId:
+        $ref: '#/definitions/Area'
+      celular:
+        type: string
+      id:
+        type: integer
+        format: int32
+      nombres:
+        type: string
+  PersonaRs:
+    type: object
+    properties:
+      descripcion:
+        type: string
+      personas:
+        type: array
+        items:
+          $ref: '#/definitions/Persona'
+  PutActivoFijoRq:
+    type: object
+    properties:
+      fechaBaja:
+        type: string
+        description: fecha de baja del activo fijo
+      serial:
+        type: string
+        description: serial del activo fijo
+    description: objeto usado para actualizar activos fijos
+  PutActivoFijoRs:
+    type: object
+    properties:
+      descripcion:
+        type: string
+      nombreActivoFijo:
+        type: string
+  TipoActivo:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      nombre:
+        type: string

@@ -1,5 +1,5 @@
 /*
-* Archivo: Mensaje
+* Archivo: PutActivoFijoRs
 * Fecha: 30/01/2021
 * Todos los derechos de propiedad intelectual e industrial sobre esta
 * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
@@ -11,18 +11,19 @@
 * propiedad intelectual. Su uso no autorizado dara lugar a las sanciones
 * previstas en la Ley.
  */
-package co.com.grupoasd.activofijo.message;
+package co.com.grupoasd.activofijo.model;
 
+import co.com.grupoasd.activofijo.message.Mensaje;
 import lombok.Data;
 
 /**
- * Clase mensajes de peticiones.
+ * Clase para guardar resultset de Optional activo.
  * @author adrian G
  */
 @Data
-public class Mensaje {
+public class PutActivoFijoRs extends Mensaje{
     /**
-     * Mensaje.
+     * activo fijo para actualizar
      */
-    private String descripcion;
+    private String nombreActivoFijo;
 }

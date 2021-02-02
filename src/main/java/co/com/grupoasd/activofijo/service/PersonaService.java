@@ -1,5 +1,5 @@
 /*
-* Archivo: Mensaje
+* Archivo: PersonaService
 * Fecha: 30/01/2021
 * Todos los derechos de propiedad intelectual e industrial sobre esta
 * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
@@ -11,18 +11,21 @@
 * propiedad intelectual. Su uso no autorizado dara lugar a las sanciones
 * previstas en la Ley.
  */
-package co.com.grupoasd.activofijo.message;
+package co.com.grupoasd.activofijo.service;
 
-import lombok.Data;
+import co.com.grupoasd.activofijo.model.PersonaRs;
 
 /**
- * Clase mensajes de peticiones.
+ * Interface de persona.
+ *
  * @author adrian G
  */
-@Data
-public class Mensaje {
+public interface PersonaService {
+
     /**
-     * Mensaje.
+     * interface para cargar lista listas de personas.
+     *
+     * @return lista de las personas que estan registradas
      */
-    private String descripcion;
+    PersonaRs getPersona();
 }

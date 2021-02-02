@@ -1,6 +1,6 @@
 /*
-* Archivo: Mensaje
-* Fecha: 30/01/2021
+* Archivo: AreaActivoFijoRs
+* Fecha: 01/01/2021
 * Todos los derechos de propiedad intelectual e industrial sobre esta
 * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
 * Su uso, alteracion, reproduccion o modificacion sin el debido
@@ -11,18 +11,20 @@
 * propiedad intelectual. Su uso no autorizado dara lugar a las sanciones
 * previstas en la Ley.
  */
-package co.com.grupoasd.activofijo.message;
+package co.com.grupoasd.activofijo.model;
 
+import co.com.grupoasd.activofijo.entity.AreaActivoFijo;
+import co.com.grupoasd.activofijo.message.Mensaje;
 import lombok.Data;
 
 /**
- * Clase mensajes de peticiones.
- * @author adrian G
+ * Clase para guardar resultset de creacion de area activo.
+ * @author amgonzalez
  */
 @Data
-public class Mensaje {
+public class AreaActivoFijoRs extends Mensaje{
     /**
-     * Mensaje.
+     * objeto de repuestas.
      */
-    private String descripcion;
+    private AreaActivoFijo areaActivoFijos;
 }

@@ -1,5 +1,5 @@
 /*
-* Archivo: AreaApiController
+* Archivo: PersonaApiController
 * Fecha: 30/01/2021
 * Todos los derechos de propiedad intelectual e industrial sobre esta
 * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
@@ -13,60 +13,57 @@
  */
 package co.com.grupoasd.activofijo.api;
 
-import co.com.grupoasd.activofijo.service.AreaService;
-import co.com.grupoasd.activofijo.model.AreaRs;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import co.com.grupoasd.activofijo.model.PersonaRs;
+import co.com.grupoasd.activofijo.service.PersonaService;
 import co.com.grupoasd.activofijo.util.TipoRespuesta;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Clase manejador de solicitudes HTTP.
- *
  * @author adrian G
  */
 @RestController
 @Slf4j
-public class AreaApiController {
-
+public class PersonaApiController {
+    
     /**
-     * Servicio de area.
+     * Servicio de persona.
      */
-    private final AreaService areaService;
-
+    private final PersonaService personaService;
+    
     /**
-     * Constructor de los servicios.
-     *
-     * @param areaService servicio de area
+     * Constructor
+     * @param personaService servicio persona
      */
-    public AreaApiController(AreaService areaService) {
-        this.areaService = areaService;
+    public PersonaApiController(PersonaService personaService){
+        this.personaService = personaService;
     }
-
-    @ApiOperation(value = "Devuelve todas las áreas de la empresa")
+    
+    @ApiOperation(value = "Devuelve todas las personas de la empresa")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Se consultó exitosamente", response = AreaRs.class),
+        @ApiResponse(code = 200, message = "Se consultó exitosamente", response = PersonaRs.class),
         @ApiResponse(code = 400, message = "Error en la petición, verifique los datos faltantes"),
         @ApiResponse(code = 404, message = "Not Found  -  búsquedas sin resultados"),
         @ApiResponse(code = 500, message = "Internal Server Error - errores que pasen en la capa de backend")})
-    @RequestMapping(value = "/obtener-areas",
+    @RequestMapping(value = "/obtener-personas",
             produces = {"application/json"},
             method = RequestMethod.GET)
-    public ResponseEntity<AreaRs> getArea() {
-        try {
-            AreaRs listAreas = areaService.getArea();
-            if (listAreas.getAreas() != null) {
-                return new ResponseEntity<>(listAreas, HttpStatus.OK);
-            }
-            return new ResponseEntity<>(listAreas, HttpStatus.NOT_FOUND);
-        } catch (Exception ex) {
+    public ResponseEntity<PersonaRs> getPersona() {
+        try{
+            PersonaRs listPersonas = personaService.getPersona();
+            if(listPersonas.getPersonas()!= null){
+                return new ResponseEntity<>(listPersonas, HttpStatus.OK);
+            } 
+            return new ResponseEntity<>(listPersonas, HttpStatus.NOT_FOUND);
+        }catch(Exception ex){
             return new ResponseEntity(TipoRespuesta.MESSAGE_INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

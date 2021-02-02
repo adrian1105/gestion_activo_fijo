@@ -1,5 +1,5 @@
 /*
-* Archivo: Area
+* Archivo: Estado
 * Fecha: 30/01/2021
 * Todos los derechos de propiedad intelectual e industrial sobre esta
 * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
@@ -21,20 +21,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
- * Clase entity de la tabla area.
+ * Clase entity de la tabla Estado.
  * @author adrian G
  */
 @Entity
-@Table(name = "area")
+@Table(name = "estado_activo_fijo")
 @Data
-public class Area implements Serializable {
+public class Estado implements Serializable {
     /**
      * número de versión que posee cada clase Serializable.
      */
@@ -53,23 +50,6 @@ public class Area implements Serializable {
      * nombre del área.
      */
     @NotNull
-    @Size(min = 5, max = 150)
     @Column(name = "nombre")
     private String nombre;
-    
-    /**
-     * ciudad de ubicación del área
-     */
-    @JoinColumn(name = "municipio_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Municipio municipioId;
-    
-    /**
-     * codigo del área.
-     */
-    @NotNull
-    @Size(max = 10)
-    @Column(name = "codigo")
-    private String codigo;
-    
 }

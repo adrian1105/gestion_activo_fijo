@@ -17,7 +17,7 @@ import co.com.grupoasd.activofijo.entity.Area;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- *
+ * Clase administradora de los datos.
  * @author adrian G
  */
 public interface AreaRepository extends JpaRepository<Area, Integer> {

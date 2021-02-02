@@ -22,7 +22,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
@@ -34,7 +33,7 @@ import lombok.Data;
 @Data
 public class Municipio implements Serializable {
     /**
-     * 
+     * número de versión que posee cada clase Serializable.
      */
     private static final long serialVersionUID = 1L;
     

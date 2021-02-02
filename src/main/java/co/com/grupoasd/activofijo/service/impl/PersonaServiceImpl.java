@@ -1,5 +1,5 @@
 /*
-* Archivo: AreaServiceImpl
+* Archivo: PersonaServiceImpl
 * Fecha: 30/01/2021
 * Todos los derechos de propiedad intelectual e industrial sobre esta
 * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
@@ -13,48 +13,42 @@
  */
 package co.com.grupoasd.activofijo.service.impl;
 
-import co.com.grupoasd.activofijo.entity.Area;
-import co.com.grupoasd.activofijo.model.AreaRs;
-import co.com.grupoasd.activofijo.repository.AreaRepository;
-import co.com.grupoasd.activofijo.service.AreaService;
+import co.com.grupoasd.activofijo.model.PersonaRs;
+import co.com.grupoasd.activofijo.entity.Persona;
+import co.com.grupoasd.activofijo.repository.PersonaRepository;
+import co.com.grupoasd.activofijo.service.PersonaService;
 import co.com.grupoasd.activofijo.util.TipoRespuesta;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Implementación de AreaService. 
+ * Implementación de PersonaService. 
  * @author adrian G
  */
 @Service
 @Transactional
-public class AreaServiceImpl implements AreaService {
-
+public class PersonaServiceImpl implements PersonaService {
+    
     /**
-     * Repositorio AreaRepository.
+     * Repositorio personaRepository.
      */
-    private final AreaRepository areaRepository;
-
-    /**
-     * Constructor.
-     *
-     * @param areaRepository repositorio de area
-     */
-    public AreaServiceImpl(AreaRepository areaRepository) {
-        this.areaRepository = areaRepository;
+    private final PersonaRepository personaRepository;
+    
+    public PersonaServiceImpl(PersonaRepository personaRepository) {
+        this.personaRepository = personaRepository;
     }
 
     /**
      * Implementacion del metodo astacto de la interface.
-     *
-     * @return lista de areas almacenada en la BD
+     * @return  lista de personas
      */
     @Override
-    public AreaRs getArea() {
-        AreaRs areaRs = new AreaRs();
-        List<Area> areas = areaRepository.findAll();
-        if (!areas.isEmpty()) {
-            areaRs.setAreas(areas);
+    public PersonaRs getPersona() {
+        PersonaRs areaRs = new PersonaRs();
+        List<Persona> personas = personaRepository.findAll();
+        if (!personas.isEmpty()) {
+            areaRs.setPersonas(personas);
             areaRs.setDescripcion(TipoRespuesta.MESSAGE_OK);
             
             return areaRs;
@@ -62,5 +56,5 @@ public class AreaServiceImpl implements AreaService {
         areaRs.setDescripcion(TipoRespuesta.MESSAGE_NOT_FOUND);
         return areaRs;
     }
-
+    
 }
